@@ -1240,6 +1240,40 @@ body.stars-visible .moon {
   margin-top: 0;
 }
 
+.about-two-column-listing {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem 2rem;
+  align-items: start;
+}
+
+.about-two-column-block .card-subheading {
+  margin-top: 0;
+}
+
+.about-credential-list {
+  display: grid;
+  gap: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.about-credential-item {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.about-credential-title {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.about-credential-item .card-section-text {
+  margin-bottom: 0;
+}
+
 /* Interest & Skills: bullet list with small icon-style bullets */
 .about-list {
   margin: 0 0 0.5rem;
@@ -1762,5 +1796,10 @@ body.stars-visible .shooting-stars {
 
   .about-details {
     text-align: left;
+  }
+
+  .about-two-column-listing {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 }

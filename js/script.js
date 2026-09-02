@@ -320,6 +320,103 @@
     }
   ];
 
+  var projectGalleries = {
+    medbuddy: [
+      {
+        src: './assets/MedBuddy_Images/image_1.png',
+        caption: 'Patient journey map for the medication adherence workflow',
+        altSuffix: 'patient journey workflow diagram',
+        fit: 'contain'
+      },
+      {
+        src: './assets/MedBuddy_Images/image_2.png',
+        caption: 'Problem framing slide with key medication nonadherence statistics',
+        altSuffix: 'problem framing slide with adherence statistics',
+        fit: 'contain'
+      },
+      {
+        src: './assets/MedBuddy_Images/image_3.png',
+        caption: 'RFID tag casing and chip concept used in the prototype',
+        altSuffix: 'RFID casing and chip concept',
+        fit: 'contain'
+      },
+      {
+        src: './assets/MedBuddy_Images/image_4.png',
+        caption: 'Early product flow sketch for the app and reminder system',
+        altSuffix: 'early product flow sketch',
+        fit: 'contain'
+      },
+      {
+        src: './assets/MedBuddy_Images/image_5.png',
+        caption: 'Final MedBuddy presentation poster with system architecture and results',
+        altSuffix: 'final MedBuddy project poster',
+        fit: 'contain'
+      }
+    ],
+    'canine-wearable': [
+      {
+        src: './assets/Canine_images/IMG_0529.JPG',
+        caption: 'Team photo from the VEST project presentation and showcase',
+        altSuffix: 'team presentation photo',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/IMG_7097.JPG',
+        caption: 'Prototype assembly session with onboard electronics and fabric integration',
+        altSuffix: 'prototype assembly session',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/IMG_7431.JPG',
+        caption: 'Prototype vest mounted on the canine test form during hardware integration',
+        altSuffix: 'vest prototype on canine test form',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/IMG_7435.JPG',
+        caption: 'Bench setup for electronics placement, wiring, and enclosure checks',
+        altSuffix: 'electronics bench setup and wiring checks',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/Screenshot_2026-02-17_at_12.30.43_AM.PNG',
+        caption: 'Final project poster highlighting validation, architecture, and outcomes',
+        altSuffix: 'project poster overview',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/image_1.png',
+        caption: 'Vest design progression from earlier concepts to the current iteration',
+        altSuffix: 'vest design progression diagram',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/image_2.png',
+        caption: 'Protective casing drawings for the ESP32 enclosure design',
+        altSuffix: 'protective casing design drawings',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/image_3.png',
+        caption: 'System architecture showing sensors, microcontroller, phone, and cloud flow',
+        altSuffix: 'system architecture diagram',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/image_4.png',
+        caption: 'Expanded flat-layout concept showing electronics placement across the vest',
+        altSuffix: 'flat layout concept diagram',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Canine_images/image_5.png',
+        caption: 'Final poster summarizing the wearable vest concept, validation, and outcomes',
+        altSuffix: 'final canine wearable poster',
+        fit: 'contain'
+      }
+    ]
+  };
+
   var projectContent = {
     'hip-implant': {
       title: 'Hip Implant Project',
@@ -389,25 +486,25 @@
     },
     medbuddy: {
       title: 'MedBuddy',
-      role: 'Prototype Product Developer',
-      team: 'Healthcare Prototype Team',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Built a healthcare-oriented prototype focused on usability, reliability, and practical user workflow support.',
-      problem: 'Users needed a lightweight solution that was easy to operate while still delivering useful and trustworthy functionality.',
-      action: 'I defined interaction priorities, implemented core features, and validated that the prototype matched intended usage scenarios.',
-      process: 'I gathered feedback, revised flows, and documented tradeoffs to align the prototype with both user and technical constraints.',
-      outcome: 'The team produced a clearer, more usable prototype that demonstrated feasibility and informed future product planning.'
+      role: 'Mobile App Developer',
+      team: 'MedBuddy Senior Capstone',
+      dates: 'Aug 2025 - May 2026',
+      summary: 'Med Buddy tackled medication non-adherence, a problem costing the U.S. healthcare system an estimated $300 billion per year, by giving patients a tool to stay consistent with their prescriptions. Our team designed a mobile app that tracks a patients medication routine and layers in gamification to motivate and reward continued adherence.',
+      problem: 'Medication nonadherence is a major healthcare problem: approximately 50% of patients with chronic conditions do not take medications as prescribed, 31% never fill their first prescription, and an estimated 125,000 deaths each year are linked to nonadherence. These behaviors contribute to preventable hospitalizations, unreliable treatment evaluation, and an estimated annual cost of up to $300 billion due to additional appointments, emergency-department visits, and hospitalizations. A smart medication-adherence system is needed to collect and interpret real-time data—such as missed doses, dose timestamps, refill activity, and medication-removal steps—so that patients and healthcare providers can better monitor adherence and respond before health outcomes worsen.',
+      action: 'I conducted interviews with 14 individuals who take one or more medications to understand their routines, adherence challenges, perceptions, and preferences for support. I also completed a literature review on behavioral psychology and medication adherence, then proposed a gamified mobile-app feature using a Tamagotchi-inspired virtual-pet concept to encourage users to complete their medication routines. In addition, I supported my teammates in prototyping the RFID-tag component used to detect medication-related actions.',
+      process: 'I used interview responses and literature findings to identify behavioral factors that influence motivation, habit formation, and medication-taking consistency. I spent several months learning React Native and developing modular mobile-app prototypes, while improving my understanding of mobile-app design, system architecture, SQL, APIs, relational databases, and game design. Throughout development, I gathered feedback, refined user flows, and documented technical and user-centered tradeoffs to ensure the prototype aligned with medication-adherence needs and the system’s technical constraints.',
+      outcome: 'We produced a functional mobile application that securely collects user information, encrypts it, stores it in a relational database, and retrieves it for the user through the app. The strongest user-testing feedback was a request for expanded gamification—including more virtual animals, customization options, and art styles—indicating that users found the app more appealing and would be more likely to continue using it when it meets their creative and interactive needs.'
     },
     'canine-wearable': {
       title: 'Canine Wearable Monitor',
-      role: 'Embedded and Systems Contributor',
-      team: 'Wearable Prototype Team',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Designed a canine wearable monitoring concept that integrated sensing, enclosure constraints, and practical testing.',
-      problem: 'The project needed a comfortable and robust form factor that could still capture meaningful monitoring data.',
-      action: 'I helped define system requirements, supported hardware-software integration decisions, and prepared test documentation.',
-      process: 'I evaluated placement tradeoffs, refined implementation details, and used test feedback to improve overall system readiness.',
-      outcome: 'The resulting prototype improved design confidence and provided a stronger baseline for expanded real-world trials.'
+      role: 'Project Leader',
+      team: 'The VEST Team',
+      dates: 'May 2025 - May 2026',
+      summary: 'My familys experiences caring for high-needs dogs motivated the VEST project: my Pomeranian has a partially collapsed trachea, and my bulldogs must be monitored for overheating. Pet owners often have limited visibility into a dog’s breathing, temperature, and overall condition when they are away, making it difficult to recognize a developing health issue before it becomes an emergency. This challenge becomes even greater for animal shelters monitoring many dogs at once and for veterinary teams evaluating pre- and post-operative patients, since a brief clinic visit and owner-reported symptoms may not capture a dog’s continuous health status; VEST is intended to support ongoing monitoring of vital signs such as respiratory rate, heart rate, and body temperature.',
+      problem: 'My family’s experiences caring for high-needs dogs motivated the VEST project: my Pomeranian has a partially collapsed trachea, and my bulldogs must be monitored for overheating. Pet owners often have limited visibility into a dog’s breathing, temperature, and overall condition when they are away, making it difficult to recognize a developing health issue before it becomes an emergency. This challenge becomes even greater for animal shelters monitoring many dogs at once and for veterinary teams evaluating pre- and post-operative patients, since a brief clinic visit and owner-reported symptoms may not capture a dog’s continuous health status; VEST is intended to support ongoing monitoring of vital signs such as respiratory rate, heart rate, and body temperature.',
+      action: 'I conducted market research on U.S. canine-vitals monitoring products and identified a limited competitive landscape, with one primary competitor using a collar-based design. I proposed a smart dog vest that distributes sensors and hardware across the dog’s body to improve measurement stability, reduce vibration and motion interference, and avoid concentrating costly components in one collar device. I partnered with TAMU Turtle Robotics, reviewed more than 50 applications, interviewed more than 15 prospective members, and recruited an 18-member multidisciplinary team.',
+      process: 'I led the 18-member team by organizing focused hardware, algorithm, software, and product-design subteams and coordinating development throughout the semester. I supported development of heart-rate, motion, and respiration sensors and algorithms, while the software team built a mobile app and explored machine-learning models for recognizing potential abnormalities from simulated and publicly available canine-vitals data. I promoted and pitched VEST to entrepreneurs, Texas A&M student organizations, and a local A&M pitch competition, won first place and $100, and explored moving the project into the McFerrin Center startup incubator program.',
+      outcome: 'VEST attracted 34 Spring 2026 applicants, compared with 25 in Fall 2025—a 36% increase—and rose from last place to tied for third among projects in applicant demand. With an 17.65% acceptance rate, the project formed a selective 18-member team and produced a partially functional canine-vitals vest that transmitted data to a mobile app; future work will focus on securing funding, completing animal testing, validating sensor accuracy, and pursuing startup-incubator opportunities.'
     },
     'robotic-leg': {
       title: 'Robotic Leg',
@@ -441,12 +538,13 @@
     var nextKey = currentIndex >= 0 && currentIndex < projectOrder.length - 1 ? projectOrder[currentIndex + 1] : null;
     var prevLabel = prevKey ? 'Previous Project: ' + projectContent[prevKey].title : 'Previous Project';
     var nextLabel = nextKey ? 'Next Project: ' + projectContent[nextKey].title : 'Next Project';
+    var gallery = projectGalleries[projectKey] || sharedGallery;
 
-    var slidesHtml = sharedGallery
+    var slidesHtml = gallery
       .map(function (image, idx) {
         var fitClass = image.fit === 'cover' ? 'project-media--cover' : 'project-media--contain';
         return (
-          '<figure class="project-slide' + (idx === 0 ? ' is-active' : '') + '" role="group" aria-roledescription="slide" aria-label="' + (idx + 1) + ' of ' + sharedGallery.length + '"' + (idx === 0 ? '' : ' aria-hidden="true"') + '>' +
+          '<figure class="project-slide' + (idx === 0 ? ' is-active' : '') + '" role="group" aria-roledescription="slide" aria-label="' + (idx + 1) + ' of ' + gallery.length + '"' + (idx === 0 ? '' : ' aria-hidden="true"') + '>' +
             '<img src="' + image.src + '" alt="' + data.title + ' - ' + image.altSuffix + '" class="' + fitClass + '" />' +
             '<figcaption>' + image.caption + '</figcaption>' +
           '</figure>'
@@ -454,7 +552,7 @@
       })
       .join('');
 
-    var dotsHtml = sharedGallery
+    var dotsHtml = gallery
       .map(function (image, idx) {
         return '<button type="button" class="project-carousel-dot' + (idx === 0 ? ' is-active' : '') + '" data-slide-dot="' + idx + '" aria-label="Go to slide ' + (idx + 1) + ': ' + image.caption + '" aria-current="' + (idx === 0 ? 'true' : 'false') + '"></button>';
       })
@@ -474,7 +572,7 @@
         '</div>' +
         '<div class="project-carousel-controls">' +
           '<div class="project-carousel-center">' +
-            '<p class="project-carousel-counter" aria-live="polite" aria-atomic="true">1 of ' + sharedGallery.length + '</p>' +
+            '<p class="project-carousel-counter" aria-live="polite" aria-atomic="true">1 of ' + gallery.length + '</p>' +
             '<div class="project-carousel-dots" role="tablist" aria-label="Slide picker">' + dotsHtml + '</div>' +
           '</div>' +
         '</div>' +

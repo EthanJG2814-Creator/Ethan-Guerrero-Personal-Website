@@ -182,6 +182,7 @@ body.day-mode .card-inner .card-flip-wrap .card-face-front {
   min-height: 320px;
   align-items: flex-start;
   gap: 0;
+  overflow: visible;
 }
 
 /* At night, dim the card so it’s not too bright */
@@ -410,6 +411,9 @@ body.stars-visible .moon {
 }
 
 .card-section-header--tabs {
+  position: relative;
+  z-index: 6;
+  overflow: visible;
   margin-bottom: 0.75rem;
 }
 
@@ -424,6 +428,148 @@ body.stars-visible .moon {
   display: flex;
   align-items: center;
   gap: 0.25rem;
+}
+
+.about-projects-dropdown {
+  position: relative;
+}
+
+.about-projects-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.about-projects-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid currentColor;
+  opacity: 0.75;
+  transition: transform 0.15s ease;
+}
+
+.about-projects-dropdown.is-open .about-projects-caret {
+  transform: rotate(180deg);
+}
+
+.about-projects-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 40;
+  min-width: 15.5rem;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.about-projects-menu[hidden] {
+  display: none;
+}
+
+.about-projects-group {
+  position: relative;
+}
+
+.about-projects-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.5em 0.9em;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--color-text);
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.about-projects-group-btn {
+  justify-content: space-between;
+  gap: 0.75em;
+}
+
+.about-projects-subcaret {
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 5px solid currentColor;
+  opacity: 0.7;
+}
+
+.about-projects-item:hover,
+.about-projects-item:focus-visible,
+.about-projects-group:hover > .about-projects-group-btn,
+.about-projects-group.is-open > .about-projects-group-btn {
+  background: rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.about-projects-item.about-projects-item-active,
+.about-projects-group.has-active > .about-projects-group-btn {
+  color: var(--color-active);
+  font-weight: 600;
+}
+
+.about-projects-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: calc(100% - 2px);
+  z-index: 41;
+  min-width: 14.5rem;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.about-projects-group:hover > .about-projects-submenu,
+.about-projects-group.is-open > .about-projects-submenu {
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .about-projects-submenu {
+    position: static;
+    left: auto;
+    top: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0 0 0.25rem;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .about-projects-submenu .about-projects-item {
+    padding-left: 1.5em;
+    font-size: 0.8125rem;
+  }
+
+  .about-projects-subcaret {
+    transform: rotate(90deg);
+  }
+
+  .about-projects-group.is-open .about-projects-subcaret,
+  .about-projects-group:hover .about-projects-subcaret {
+    transform: rotate(-90deg);
+  }
 }
 
 .about-export-btn {

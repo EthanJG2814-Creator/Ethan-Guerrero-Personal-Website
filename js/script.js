@@ -147,18 +147,70 @@
     }
   }
 
+  var PROJECT_TABS = [
+    'hip-implant',
+    'bone-modeling',
+    'bmen-207',
+    'hospital-prediction',
+    'scraper',
+    'ai-protein',
+    'medbuddy',
+    'canine-wearable',
+    'robotic-leg'
+  ];
+  var projectsDropdown = document.getElementById('about-projects-dropdown');
+  var projectsToggle = document.getElementById('about-projects-toggle');
+  var projectsMenu = document.getElementById('about-projects-menu');
+  var projectGroups = document.querySelectorAll('.about-projects-group');
+
+  function closeProjectGroups() {
+    projectGroups.forEach(function (group) {
+      group.classList.remove('is-open');
+      var btn = group.querySelector('.about-projects-group-btn');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function closeProjectsMenu() {
+    if (!projectsDropdown || !projectsToggle || !projectsMenu) return;
+    projectsDropdown.classList.remove('is-open');
+    projectsToggle.setAttribute('aria-expanded', 'false');
+    projectsMenu.hidden = true;
+    closeProjectGroups();
+  }
+
+  function openProjectsMenu() {
+    if (!projectsDropdown || !projectsToggle || !projectsMenu) return;
+    projectsDropdown.classList.add('is-open');
+    projectsToggle.setAttribute('aria-expanded', 'true');
+    projectsMenu.hidden = false;
+  }
+
   function setAboutTab(tab) {
-    var tabs = document.querySelectorAll('.about-tab-btn');
+    var aboutBtn = document.querySelector('.about-tab-btn[data-about-tab="about"]');
     var panels = document.querySelectorAll('.about-tab-panel');
-    tabs.forEach(function (btn) {
-      var t = btn.getAttribute('data-about-tab');
-      btn.classList.toggle('about-tab-active', t === tab);
-      btn.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+    var menuItems = document.querySelectorAll('.about-projects-subitem');
+    var isProject = PROJECT_TABS.indexOf(tab) !== -1;
+
+    if (aboutBtn) {
+      aboutBtn.classList.toggle('about-tab-active', tab === 'about');
+      aboutBtn.setAttribute('aria-selected', tab === 'about' ? 'true' : 'false');
+    }
+    if (projectsToggle) {
+      projectsToggle.classList.toggle('about-tab-active', isProject);
+    }
+    menuItems.forEach(function (item) {
+      item.classList.toggle('about-projects-item-active', item.getAttribute('data-about-tab') === tab);
+    });
+    projectGroups.forEach(function (group) {
+      var hasActive = !!group.querySelector('.about-projects-subitem[data-about-tab="' + tab + '"]');
+      group.classList.toggle('has-active', hasActive);
     });
     panels.forEach(function (panel) {
       var panelTab = panel.id.replace('about-panel-', '');
       panel.setAttribute('aria-hidden', panelTab === tab ? 'false' : 'true');
     });
+    closeProjectsMenu();
   }
 
   navButtons.forEach(function (btn) {
@@ -176,8 +228,8 @@
     });
   });
 
-  /* About section tabs: About | Personal Projects | Academic Projects */
-  var aboutTabBtns = document.querySelectorAll('.about-tab-btn');
+  /* About section tabs: About | Projects dropdown */
+  var aboutTabBtns = document.querySelectorAll('.about-tab-btn[data-about-tab]');
   aboutTabBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var tab = btn.getAttribute('data-about-tab');
@@ -185,10 +237,52 @@
       setAboutTab(tab);
     });
   });
+
+  if (projectsToggle) {
+    projectsToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (projectsDropdown && projectsDropdown.classList.contains('is-open')) {
+        closeProjectsMenu();
+      } else {
+        openProjectsMenu();
+      }
+    });
+  }
+
+  document.querySelectorAll('.about-projects-subitem').forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var tab = item.getAttribute('data-about-tab');
+      if (tab) setAboutTab(tab);
+    });
+  });
+
+  projectGroups.forEach(function (group) {
+    var btn = group.querySelector('.about-projects-group-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var willOpen = !group.classList.contains('is-open');
+      closeProjectGroups();
+      if (willOpen) {
+        group.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!projectsDropdown) return;
+    if (!projectsDropdown.contains(e.target)) closeProjectsMenu();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeProjectsMenu();
+  });
 })();
 
 /**
- * Portfolio PDF export: layout matches project pages (html2pdf + clone). Order: Bio, Personal, Academic.
+ * Portfolio PDF export: layout matches project pages (html2pdf + clone). Order: Bio, then project categories.
  */
 (function () {
   'use strict';
@@ -234,8 +328,32 @@
     }
 
     var aboutContent = document.querySelector('#about-panel-about .card-section-about-content');
-    var personalContent = document.querySelector('#about-panel-personal .card-section-content');
-    var academicContent = document.querySelector('#about-panel-academic .card-section-content');
+    var projectCategories = [
+      {
+        heading: 'CAD & Mechanical Design',
+        selectors: [
+          '#about-panel-hip-implant .card-section-content',
+          '#about-panel-bone-modeling .card-section-content',
+          '#about-panel-bmen-207 .card-section-content'
+        ]
+      },
+      {
+        heading: 'Software, Data & ML',
+        selectors: [
+          '#about-panel-hospital-prediction .card-section-content',
+          '#about-panel-scraper .card-section-content',
+          '#about-panel-ai-protein .card-section-content'
+        ]
+      },
+      {
+        heading: 'Prototypes',
+        selectors: [
+          '#about-panel-medbuddy .card-section-content',
+          '#about-panel-canine-wearable .card-section-content',
+          '#about-panel-robotic-leg .card-section-content'
+        ]
+      }
+    ];
 
     var shell = document.createElement('div');
     shell.className = 'portfolio-pdf-export-shell';
@@ -249,24 +367,30 @@
     title.textContent = 'Portfolio';
     root.appendChild(title);
 
-    function addSection(heading, contentNode) {
+    function addSection(heading, contentNodes) {
       var section = document.createElement('section');
       section.className = 'portfolio-pdf-section';
       var h2 = document.createElement('h2');
       h2.className = 'portfolio-pdf-section-title';
       h2.textContent = heading;
       section.appendChild(h2);
-      var cloned = cloneForPdf(contentNode);
-      if (cloned) {
-        cloned.classList.remove('card-section-content--scroll');
-        section.appendChild(cloned);
-      }
+      (Array.isArray(contentNodes) ? contentNodes : [contentNodes]).forEach(function (contentNode) {
+        var cloned = cloneForPdf(contentNode);
+        if (cloned) {
+          cloned.classList.remove('card-section-content--scroll');
+          section.appendChild(cloned);
+        }
+      });
       root.appendChild(section);
     }
 
     addSection('Bio', aboutContent);
-    addSection('Personal Projects', personalContent);
-    addSection('Academic Projects', academicContent);
+    projectCategories.forEach(function (category) {
+      var nodes = category.selectors.map(function (sel) {
+        return document.querySelector(sel);
+      });
+      addSection(category.heading, nodes);
+    });
 
     shell.appendChild(root);
     document.body.appendChild(shell);

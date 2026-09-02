@@ -282,6 +282,411 @@
 })();
 
 /**
+ * Project pages: render recruiter-friendly layout + accessible 5-image carousel.
+ */
+(function () {
+  'use strict';
+
+  var sharedGallery = [
+    {
+      src: './assets/project-the-what.png',
+      caption: 'System architecture and scope definition',
+      altSuffix: 'system architecture overview',
+      fit: 'contain'
+    },
+    {
+      src: './assets/project-the-how.png',
+      caption: 'Prototype development and technical build',
+      altSuffix: 'prototype development details',
+      fit: 'contain'
+    },
+    {
+      src: './assets/project-system-architecture.png',
+      caption: 'Final CAD assembly and integration map',
+      altSuffix: 'final CAD assembly and integration map',
+      fit: 'contain'
+    },
+    {
+      src: './assets/project-test-setup.png',
+      caption: 'Validation test setup and measurement workflow',
+      altSuffix: 'validation test setup',
+      fit: 'cover'
+    },
+    {
+      src: './assets/project-the-result.png',
+      caption: 'Final outcome and key performance result',
+      altSuffix: 'final project outcome',
+      fit: 'contain'
+    }
+  ];
+
+  var projectContent = {
+    'hip-implant': {
+      title: 'Hip Implant Project',
+      role: 'Design and Analysis Contributor',
+      team: 'Biomechanics Design Team',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Designed and evaluated a concept hip implant to improve load transfer and manufacturing readiness.',
+      problem: 'The team needed an implant concept that balanced biomechanical stability with manufacturable geometry while addressing stress concentration in high-load regions.',
+      action: 'I owned CAD refinement, translated requirements into measurable criteria, and supported reviews with concise design tradeoff documentation.',
+      process: 'I iterated geometry, compared design options against constraints, and aligned structural assumptions with team testing plans to reduce downstream rework.',
+      outcome: 'We delivered a final design package and rationale that improved design clarity for stakeholders and strengthened confidence in the chosen direction.'
+    },
+    'bone-modeling': {
+      title: 'Bone Modeling Lab',
+      role: 'Computational Modeling Team Member',
+      team: 'Biomedical Simulation Lab',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Built and validated a bone model workflow to support data-informed biomechanical analysis.',
+      problem: 'The lab needed a repeatable way to model bone behavior from experimental context without losing traceability between assumptions and outputs.',
+      action: 'I structured the model pipeline, documented key assumptions, and prepared interpretable outputs for technical discussion.',
+      process: 'I cleaned inputs, validated parameter choices, and compared intermediate outputs to expected trends before final interpretation.',
+      outcome: 'The final workflow improved reproducibility and gave the team a stronger foundation for follow-on experiments and model updates.'
+    },
+    'bmen-207': {
+      title: 'BMEN 207 Project',
+      role: 'Project Engineer',
+      team: 'Course Design Team',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Delivered a semester-long biomedical engineering project with clear milestones and documented technical decisions.',
+      problem: 'The project required integrating course concepts into a practical solution under strict time, scope, and communication constraints.',
+      action: 'I coordinated implementation priorities, maintained technical documentation, and communicated risks during checkpoint reviews.',
+      process: 'I broke the project into milestones, validated each stage against requirements, and adjusted task ownership to keep delivery on schedule.',
+      outcome: 'The team delivered a complete final submission with measurable progress evidence and a strong narrative of engineering decision-making.'
+    },
+    'hospital-prediction': {
+      title: 'Hospital Prediction',
+      role: 'Data and Modeling Contributor',
+      team: 'Healthcare Analytics Team',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Developed a predictive workflow to support hospital-oriented decision making using structured data signals.',
+      problem: 'Stakeholders needed a practical prediction approach that could improve planning quality without introducing opaque model behavior.',
+      action: 'I prepared the modeling dataset, supported feature decisions, and translated metrics into plain-language implications for non-technical reviewers.',
+      process: 'I evaluated multiple modeling options, tracked performance changes, and documented the rationale for the final selected approach.',
+      outcome: 'The final model and report provided a usable baseline for future iterations and made technical results easier to consume across roles.'
+    },
+    scraper: {
+      title: 'Scraper Project',
+      role: 'Automation Developer',
+      team: 'Independent Software Build',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Implemented a data scraping workflow that reliably transformed unstructured web content into analyzable records.',
+      problem: 'Manual data collection was inconsistent and time-consuming, making it difficult to maintain quality and update cadence.',
+      action: 'I built the scraping logic, handled edge-case parsing, and introduced clear output formatting for downstream use.',
+      process: 'I iteratively tested source variations, improved failure handling, and verified that extracted fields remained stable over repeated runs.',
+      outcome: 'The project reduced manual effort, improved data consistency, and created a maintainable automation base for future enhancements.'
+    },
+    'ai-protein': {
+      title: 'AI Protein Algorithm',
+      role: 'ML and Algorithm Contributor',
+      team: 'Computational Biology Group',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Contributed to an AI-driven protein-focused algorithm with emphasis on interpretability and iterative model improvement.',
+      problem: 'The challenge was balancing algorithmic performance with transparent reasoning suitable for scientific collaboration.',
+      action: 'I supported feature design, tested model behaviors, and documented decisions that affected precision and reliability.',
+      process: 'I ran comparison experiments, reviewed outcome patterns with the team, and refined the approach based on observed limitations.',
+      outcome: 'The final direction improved confidence in the model pipeline and clarified priorities for the next round of experimentation.'
+    },
+    medbuddy: {
+      title: 'MedBuddy',
+      role: 'Prototype Product Developer',
+      team: 'Healthcare Prototype Team',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Built a healthcare-oriented prototype focused on usability, reliability, and practical user workflow support.',
+      problem: 'Users needed a lightweight solution that was easy to operate while still delivering useful and trustworthy functionality.',
+      action: 'I defined interaction priorities, implemented core features, and validated that the prototype matched intended usage scenarios.',
+      process: 'I gathered feedback, revised flows, and documented tradeoffs to align the prototype with both user and technical constraints.',
+      outcome: 'The team produced a clearer, more usable prototype that demonstrated feasibility and informed future product planning.'
+    },
+    'canine-wearable': {
+      title: 'Canine Wearable Monitor',
+      role: 'Embedded and Systems Contributor',
+      team: 'Wearable Prototype Team',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Designed a canine wearable monitoring concept that integrated sensing, enclosure constraints, and practical testing.',
+      problem: 'The project needed a comfortable and robust form factor that could still capture meaningful monitoring data.',
+      action: 'I helped define system requirements, supported hardware-software integration decisions, and prepared test documentation.',
+      process: 'I evaluated placement tradeoffs, refined implementation details, and used test feedback to improve overall system readiness.',
+      outcome: 'The resulting prototype improved design confidence and provided a stronger baseline for expanded real-world trials.'
+    },
+    'robotic-leg': {
+      title: 'Robotic Leg',
+      role: 'Mechatronics Team Member',
+      team: 'Robotics Development Team',
+      dates: 'Jan 2024 - May 2024',
+      summary: 'Contributed to a robotic leg prototype by connecting mechanical design, control considerations, and validation planning.',
+      problem: 'The team needed to deliver stable, repeatable motion while managing mechanical limits and implementation complexity.',
+      action: 'I supported mechanism development, helped align control priorities, and documented integration blockers early.',
+      process: 'I collaborated through iterative builds, tested behavior under representative conditions, and tracked adjustments with clear rationale.',
+      outcome: 'The team demonstrated a functional prototype with improved motion reliability and actionable next steps for optimization.'
+    }
+  };
+
+  var projectOrder = [
+    'hip-implant',
+    'bone-modeling',
+    'bmen-207',
+    'hospital-prediction',
+    'scraper',
+    'ai-protein',
+    'medbuddy',
+    'canine-wearable',
+    'robotic-leg'
+  ];
+
+  function renderProjectPage(container, projectKey, data) {
+    if (!container || !data) return;
+    var currentIndex = projectOrder.indexOf(projectKey);
+    var prevKey = currentIndex > 0 ? projectOrder[currentIndex - 1] : null;
+    var nextKey = currentIndex >= 0 && currentIndex < projectOrder.length - 1 ? projectOrder[currentIndex + 1] : null;
+    var prevLabel = prevKey ? 'Previous Project: ' + projectContent[prevKey].title : 'Previous Project';
+    var nextLabel = nextKey ? 'Next Project: ' + projectContent[nextKey].title : 'Next Project';
+
+    var slidesHtml = sharedGallery
+      .map(function (image, idx) {
+        var fitClass = image.fit === 'cover' ? 'project-media--cover' : 'project-media--contain';
+        return (
+          '<figure class="project-slide' + (idx === 0 ? ' is-active' : '') + '" role="group" aria-roledescription="slide" aria-label="' + (idx + 1) + ' of ' + sharedGallery.length + '"' + (idx === 0 ? '' : ' aria-hidden="true"') + '>' +
+            '<img src="' + image.src + '" alt="' + data.title + ' - ' + image.altSuffix + '" class="' + fitClass + '" />' +
+            '<figcaption>' + image.caption + '</figcaption>' +
+          '</figure>'
+        );
+      })
+      .join('');
+
+    var dotsHtml = sharedGallery
+      .map(function (image, idx) {
+        return '<button type="button" class="project-carousel-dot' + (idx === 0 ? ' is-active' : '') + '" data-slide-dot="' + idx + '" aria-label="Go to slide ' + (idx + 1) + ': ' + image.caption + '" aria-current="' + (idx === 0 ? 'true' : 'false') + '"></button>';
+      })
+      .join('');
+
+    container.innerHTML =
+      '<header class="project-page-intro">' +
+        '<h1 class="project-page-title">' + data.title + '</h1>' +
+        '<p class="project-page-meta">Role: ' + data.role + ' | Team: ' + data.team + ' | Dates: ' + data.dates + '</p>' +
+        '<p class="project-page-summary">' + data.summary + '</p>' +
+      '</header>' +
+      '<section class="project-carousel" aria-label="Project gallery for ' + data.title + '" tabindex="0">' +
+        '<div class="project-carousel-viewport">' +
+          '<button type="button" class="project-carousel-arrow project-carousel-arrow--prev" data-slide-nav="prev" aria-label="Previous slide">&#8249;</button>' +
+          '<button type="button" class="project-carousel-arrow project-carousel-arrow--next" data-slide-nav="next" aria-label="Next slide">&#8250;</button>' +
+          slidesHtml +
+        '</div>' +
+        '<div class="project-carousel-controls">' +
+          '<div class="project-carousel-center">' +
+            '<p class="project-carousel-counter" aria-live="polite" aria-atomic="true">1 of ' + sharedGallery.length + '</p>' +
+            '<div class="project-carousel-dots" role="tablist" aria-label="Slide picker">' + dotsHtml + '</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>' +
+      '<section class="project-page-section">' +
+        '<h2>Problem</h2>' +
+        '<p>' + data.problem + '</p>' +
+      '</section>' +
+      '<section class="project-page-section">' +
+        '<h2>My Action</h2>' +
+        '<p>' + data.action + '</p>' +
+      '</section>' +
+      '<section class="project-page-section">' +
+        '<h2>Process</h2>' +
+        '<p>' + data.process + '</p>' +
+      '</section>' +
+      '<section class="project-page-section">' +
+        '<h2>Outcome</h2>' +
+        '<p>' + data.outcome + '</p>' +
+      '</section>' +
+      '<nav class="project-page-footer-nav" aria-label="Project page navigation">' +
+        '<button type="button" class="project-page-nav-btn" data-project-nav="prev"' + (prevKey ? '' : ' disabled') + '>' + prevLabel + '</button>' +
+        '<button type="button" class="project-page-nav-btn" data-project-nav="next"' + (nextKey ? '' : ' disabled') + '>' + nextLabel + '</button>' +
+      '</section>';
+  }
+
+  function navigateProjectFromKey(currentKey, direction) {
+    var currentIndex = projectOrder.indexOf(currentKey);
+    if (currentIndex === -1) return;
+    var nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1;
+    if (nextIndex < 0 || nextIndex >= projectOrder.length) return;
+    var targetKey = projectOrder[nextIndex];
+    var targetMenuItem = document.querySelector('.about-projects-subitem[data-about-tab="' + targetKey + '"]');
+    if (targetMenuItem) {
+      targetMenuItem.click();
+      var targetPanel = document.getElementById('about-panel-' + targetKey);
+      if (targetPanel) targetPanel.scrollTop = 0;
+    }
+  }
+
+  function initCarousel(carousel) {
+    if (!carousel) return;
+
+    var slides = carousel.querySelectorAll('.project-slide');
+    var dots = carousel.querySelectorAll('.project-carousel-dot');
+    var counter = carousel.querySelector('.project-carousel-counter');
+    var prevBtn = carousel.querySelector('[data-slide-nav="prev"]');
+    var nextBtn = carousel.querySelector('[data-slide-nav="next"]');
+    var viewport = carousel.querySelector('.project-carousel-viewport');
+    var current = 0;
+    var total = slides.length;
+    var startX = null;
+    var startY = null;
+    var autoplayTimer = null;
+    var AUTOPLAY_MS = 4500;
+
+    if (!total) return;
+
+    function stopAutoplay() {
+      if (!autoplayTimer) return;
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(function () {
+        setSlide(current + 1);
+      }, AUTOPLAY_MS);
+    }
+
+    function setSlide(index) {
+      var normalized = (index + total) % total;
+      current = normalized;
+
+      slides.forEach(function (slide, idx) {
+        var isActive = idx === normalized;
+        slide.classList.toggle('is-active', isActive);
+        if (isActive) {
+          slide.removeAttribute('aria-hidden');
+        } else {
+          slide.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      dots.forEach(function (dot, idx) {
+        var isActive = idx === normalized;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+
+      if (counter) {
+        counter.textContent = (normalized + 1) + ' of ' + total;
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        setSlide(current - 1);
+        startAutoplay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        setSlide(current + 1);
+        startAutoplay();
+      });
+    }
+
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () {
+        var index = Number(dot.getAttribute('data-slide-dot'));
+        if (!Number.isNaN(index)) {
+          setSlide(index);
+          startAutoplay();
+        }
+      });
+    });
+
+    carousel.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setSlide(current + 1);
+        startAutoplay();
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setSlide(current - 1);
+        startAutoplay();
+      }
+      if (e.key === 'Home') {
+        e.preventDefault();
+        setSlide(0);
+        startAutoplay();
+      }
+      if (e.key === 'End') {
+        e.preventDefault();
+        setSlide(total - 1);
+        startAutoplay();
+      }
+    });
+
+    if (viewport) {
+      viewport.addEventListener('mouseenter', stopAutoplay);
+      viewport.addEventListener('mouseleave', startAutoplay);
+      viewport.addEventListener('focusin', stopAutoplay);
+      viewport.addEventListener('focusout', startAutoplay);
+      viewport.addEventListener('touchstart', stopAutoplay, { passive: true });
+      viewport.addEventListener('touchend', startAutoplay, { passive: true });
+    }
+
+    carousel.addEventListener('touchstart', function (e) {
+      if (!e.touches || !e.touches.length) return;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', function (e) {
+      if (startX === null || startY === null || !e.changedTouches || !e.changedTouches.length) return;
+      var endX = e.changedTouches[0].clientX;
+      var endY = e.changedTouches[0].clientY;
+      var diffX = endX - startX;
+      var diffY = endY - startY;
+      startX = null;
+      startY = null;
+      if (Math.abs(diffX) < 40 || Math.abs(diffX) < Math.abs(diffY)) return;
+      if (diffX < 0) {
+        setSlide(current + 1);
+      } else {
+        setSlide(current - 1);
+      }
+      startAutoplay();
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    });
+
+    setSlide(0);
+    startAutoplay();
+  }
+
+  var containers = document.querySelectorAll('.project-page[data-project-key]');
+  containers.forEach(function (container) {
+    var key = container.getAttribute('data-project-key');
+    if (!key || !projectContent[key]) return;
+    renderProjectPage(container, key, projectContent[key]);
+  });
+
+  document.querySelectorAll('.project-carousel').forEach(function (carousel) {
+    initCarousel(carousel);
+  });
+
+  document.querySelectorAll('.project-page-nav-btn[data-project-nav]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var direction = btn.getAttribute('data-project-nav');
+      if (direction !== 'prev' && direction !== 'next') return;
+      var page = btn.closest('.project-page[data-project-key]');
+      if (!page) return;
+      var currentKey = page.getAttribute('data-project-key');
+      if (!currentKey) return;
+      navigateProjectFromKey(currentKey, direction);
+    });
+  });
+})();
+
+/**
  * Portfolio PDF export: layout matches project pages (html2pdf + clone). Order: Bio, then project categories.
  */
 (function () {

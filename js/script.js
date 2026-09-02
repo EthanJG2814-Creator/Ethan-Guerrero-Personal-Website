@@ -321,6 +321,96 @@
   ];
 
   var projectGalleries = {
+    scraper: [
+      {
+        src: './assets/scraper/image_1.png',
+        caption: 'Scraper pipeline overview for extracting and structuring source data',
+        altSuffix: 'scraper pipeline overview',
+        fit: 'contain'
+      },
+      {
+        src: './assets/scraper/image_2.png',
+        caption: 'Parsed output and validation view for the scraping workflow',
+        altSuffix: 'scraper output validation view',
+        fit: 'contain'
+      }
+    ],
+    'ai-protein': [
+      {
+        src: './assets/protein/image_1.png',
+        caption: 'Project overview for the AI protein algorithm pipeline',
+        altSuffix: 'AI protein project overview',
+        fit: 'contain'
+      },
+      {
+        src: './assets/protein/image_2.png',
+        caption: 'Model design and feature-processing workflow for protein analysis',
+        altSuffix: 'protein model and feature workflow',
+        fit: 'contain'
+      },
+      {
+        src: './assets/protein/image_3.png',
+        caption: 'Training and validation comparison for candidate algorithm variants',
+        altSuffix: 'training and validation comparison chart',
+        fit: 'contain'
+      },
+      {
+        src: './assets/protein/image_4.png',
+        caption: 'Evaluation metrics view highlighting precision and recall behavior',
+        altSuffix: 'evaluation metrics view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/protein/image_5.png',
+        caption: 'Final results visual summarizing algorithm performance outcomes',
+        altSuffix: 'final AI protein results visual',
+        fit: 'contain'
+      }
+    ],
+    'hospital-prediction': [
+      {
+        src: './assets/Hospital_prediction/image_1.png',
+        caption: 'Project overview slide introducing the hospital readmission prediction workflow',
+        altSuffix: 'project overview slide',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Hospital_prediction/image_2.png',
+        caption: 'Dataset breakdown and feature review used during exploratory analysis',
+        altSuffix: 'dataset breakdown and feature review',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Hospital_prediction/image_3.png',
+        caption: 'Model comparison visual summarizing training and validation performance',
+        altSuffix: 'model comparison visual',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Hospital_prediction/image_4.png',
+        caption: 'Confusion-matrix and metrics view for diabetic readmission classes',
+        altSuffix: 'confusion matrix and metrics view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Hospital_prediction/image_5.png',
+        caption: 'ROC and class-level evaluation figure for multiclass model performance',
+        altSuffix: 'ROC and class evaluation figure',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Hospital_prediction/image_6.png',
+        caption: 'Results summary slide highlighting top model accuracy and baseline gains',
+        altSuffix: 'results summary slide',
+        fit: 'contain'
+      },
+      {
+        src: './assets/Hospital_prediction/image_7.png',
+        caption: 'Final presentation poster consolidating process, modeling, and outcomes',
+        altSuffix: 'final hospital prediction poster',
+        fit: 'contain'
+      }
+    ],
     medbuddy: [
       {
         src: './assets/MedBuddy_Images/image_1.png',
@@ -414,6 +504,32 @@
         altSuffix: 'final canine wearable poster',
         fit: 'contain'
       }
+    ],
+    'robotic-leg': [
+      {
+        src: './assets/ANKL/image_1.png',
+        caption: 'System concept slide for the six-degree-of-freedom prosthetic ankle design',
+        altSuffix: 'prosthetic ankle concept slide',
+        fit: 'contain'
+      },
+      {
+        src: './assets/ANKL/image_2.png',
+        caption: 'Mechanical layout or kinematic view used during design development',
+        altSuffix: 'mechanical layout and kinematic view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/ANKL/image_3.png',
+        caption: 'Prototype hardware view showing assembly details for the ANKL system',
+        altSuffix: 'prototype hardware assembly view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/ANKL/image_4.png',
+        caption: 'Final results or presentation visual summarizing the robotic leg prototype',
+        altSuffix: 'final robotic leg presentation visual',
+        fit: 'contain'
+      }
     ]
   };
 
@@ -453,36 +569,36 @@
     },
     'hospital-prediction': {
       title: 'Hospital Prediction',
-      role: 'Data and Modeling Contributor',
-      team: 'Healthcare Analytics Team',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Developed a predictive workflow to support hospital-oriented decision making using structured data signals.',
-      problem: 'Stakeholders needed a practical prediction approach that could improve planning quality without introducing opaque model behavior.',
-      action: 'I prepared the modeling dataset, supported feature decisions, and translated metrics into plain-language implications for non-technical reviewers.',
-      process: 'I evaluated multiple modeling options, tracked performance changes, and documented the rationale for the final selected approach.',
-      outcome: 'The final model and report provided a usable baseline for future iterations and made technical results easier to consume across roles.'
+      role: 'Student',
+      team: 'Indivudal Project',
+      dates: 'March 2026',
+      summary: 'This BMEN 351 project developed and compared four machine learning models—KNN, Random Forest, Multinomial Logistic Regression, and a sequential neural network—to predict whether diabetic patients would be readmitted to the hospital within 30 days, after 30 days, or not at all. Using a dataset of 101,766 hospital encounters from 130 U.S. hospitals, the project produced a top-performing Multinomial Logistic Regression model with 74.70% test accuracy, well above the majority-class baseline of 53.9%.',
+      problem: 'As of 2026, 40.1 million Americans have diabetes and 115.2 million have prediabetes, and diabetes-related care costs U.S. hospitals between $412.9 billion and $640 billion annually. Diabetes accounts for roughly 25% of all hospitalizations between 2000 and 2018, straining hospital budgets, staffing, and resource allocation. There is a need for a predictive model that can classify diabetic patients into three readmission categories—no readmission (53.9% of cases), readmission after 30 days (34.9%), and readmission within 30 days (11.2%)—so hospitals can better anticipate patient volume and allocate resources accordingly.',
+      action: 'I used the Diabetes 130-US Hospitals dataset from the UCI Machine Learning Repository, containing 101,766 hospital encounters collected from 130 U.S. hospitals and integrated delivery networks between 1999 and 2008, to build a multiclass readmission-prediction pipeline. I performed exploratory data analysis on class distributions, missing-data patterns (including features with up to 96.86% missingness, such as weight), demographic imbalances in race and age, and medication-usage frequency across 24 drug categories, then used these findings to guide feature selection. I removed low-value administrative identifiers and highly sparse or incomplete features, applied distribution-based imputation for race and payer code, engineered new features capturing a patients total prior encounters, and one-hot encoded all remaining categorical variables, reducing the dataset from an original shape of (101,766, 50) to a cleaned shape of (101,766, 89). I then established two baseline models—a random-sampling baseline and a majority-class baseline—to serve as performance benchmarks before training any machine learning models.',
+      process: 'I designed and trained four classification models to compare neural, linear, tree-based, and distance-based approaches: a sequential neural network with two dense hidden layers (64 and 32 nodes, ReLU activation) and dropout regularization, a K-nearest neighbors model (k=25, distance-weighted), a Random Forest with 50 trees, and a Multinomial Logistic Regression model on standardized features. To address the datasets class imbalance, I applied stratified sampling for the train/validation/test split (approximately 64%/16%/20%), used class weights during neural network training, and implemented early stopping to prevent overfitting while monitoring validation loss. I evaluated all models using validation accuracy, test accuracy, macro F1 score, weighted F1 score, and log loss, then compared performance using accuracy and loss visualizations, confusion matrices, and ROC/AUC curves for each class to identify which models generalized best and where performance broke down, particularly for the minority readmission classes.',
+      outcome: 'Multinomial Logistic Regression emerged as the strongest model, achieving 74.70% test accuracy and a weighted F1 score of 0.698, compared with a 53.9% majority-class baseline and a 42.65% random-sampling baseline. All four trained models outperformed both baselines and achieved NO-class AUC values around 0.87–0.88, though every model struggled to correctly classify the minority "<30" and ">30" readmission groups, highlighting class imbalance as the primary remaining challenge for future model refinement.'
     },
     scraper: {
       title: 'Scraper Project',
-      role: 'Automation Developer',
-      team: 'Independent Software Build',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Implemented a data scraping workflow that reliably transformed unstructured web content into analyzable records.',
-      problem: 'Manual data collection was inconsistent and time-consuming, making it difficult to maintain quality and update cadence.',
-      action: 'I built the scraping logic, handled edge-case parsing, and introduced clear output formatting for downstream use.',
-      process: 'I iteratively tested source variations, improved failure handling, and verified that extracted fields remained stable over repeated runs.',
-      outcome: 'The project reduced manual effort, improved data consistency, and created a maintainable automation base for future enhancements.'
+      role: 'Individual ',
+      team: 'Personal Project',
+      dates: 'May 2026 - Present',
+      summary: 'This personal project involved building a Selenium-based web scraper to collect job and listing data and store it in a relational database, then applying rule-based and machine-learning categorization—including word tokenization—to automatically organize listings by role type and seniority level. The system also incorporates prompt engineering and retrieval-augmented generation (RAG) so users can search and surface listings that match their personal interests in natural language rather than relying on generic keyword filters.',
+      problem: 'Most job and listing platforms rely on generic filters and vague postings that fail to clearly indicate whether a role is intended for students, entry-level candidates, or experienced professionals. With a large volume of postings available at any given time, searching for a relevant listing becomes overwhelming and often takes longer than actually applying, since users are forced to manually open and read each description before determining relevance. This project addresses that inefficiency by automating the collection, categorization, and personalized retrieval of listings so users spend less time filtering and more time acting on genuinely relevant opportunities.',
+      action: 'I independently researched the tools and technical concepts needed to solve this problem, since I had no formal background in web scraping or information retrieval going into the project. Through self-directed learning, I studied Selenium for browser automation, SQL and relational database design for structured storage, regular expressions (regex) for text parsing, and the fundamentals of information retrieval to understand how to move from raw scraped text to structured, searchable data. I also learned prompt engineering and retrieval-augmented generation (RAG) so that an AI model could interpret user interests in natural language and match them against the categorized listing database, rather than relying on rigid keyword filters.',
+      process: 'I approached development iteratively rather than trying to build one finished system, creating multiple smaller prototype versions to validate individual components—such as the scrapers reliability, the database schema, and the categorization logic—before combining them. This resulted in three full iterations of the program, with each version improving on the categorization pipeline: starting with simple rule-based sorting, then layering in machine-learning classification, and finally adding word tokenization so the model could interpret listing text and assign more nuanced categories (e.g., seniority level, role type) automatically. This willingness to test small, fail fast, and rebuild rather than over-engineer a single version reflects a self-taught, hands-on approach to learning unfamiliar technical domains through direct experimentation.',
+      outcome: 'The final scraper reliably processes between 421 and 492 listings per hour, completing a full scraping run in 2 to 8 hours depending on the total volume of postings available at the time. Beyond the functional output, the project demonstrated the ability to independently learn and integrate five distinct technical domains—web automation, relational databases, regex-based parsing, machine learning classification, and RAG-based retrieval—into a single working pipeline without formal coursework or team support.'
     },
     'ai-protein': {
       title: 'AI Protein Algorithm',
-      role: 'ML and Algorithm Contributor',
-      team: 'Computational Biology Group',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Contributed to an AI-driven protein-focused algorithm with emphasis on interpretability and iterative model improvement.',
-      problem: 'The challenge was balancing algorithmic performance with transparent reasoning suitable for scientific collaboration.',
-      action: 'I supported feature design, tested model behaviors, and documented decisions that affected precision and reliability.',
-      process: 'I ran comparison experiments, reviewed outcome patterns with the team, and refined the approach based on observed limitations.',
-      outcome: 'The final direction improved confidence in the model pipeline and clarified priorities for the next round of experimentation.'
+      role: 'Undergraduate Researcher',
+      team: 'Marshall University Research Lab',
+      dates: 'May 2025 - Aug 2025',
+      summary: 'Membrane proteins are critical drug targets, but AlphaFolds reliability in predicting their structures remains uncertain, biased, and inconsistent, making it unclear whether AlphaFold 3 represents a genuine improvement over AlphaFold 2. This project addressed that gap by building a filtering and structural-comparison pipeline that benchmarked AlphaFold 2 and AlphaFold 3 predictions against experimentally solved membrane-protein structures using quantitative metrics such as RMSD, TM-score, and pLDDT.',
+      problem: 'Membrane proteins are key drug targets involved in cellular signaling, transport, and immunity, yet AlphaFolds accuracy in predicting their 3D structures remains uncertain, biased, and inconsistent. There was a need to quantitatively determine how well AlphaFold performs on membrane proteins specifically, and whether the newer AlphaFold 3 model offers a real, measurable improvement over AlphaFold 2 rather than an assumed one',
+      action: 'To investigate this problem, I built a curated dataset of human, Swiss-Prot-reviewed membrane proteins containing documented 3D structures by applying a series of filters—including "membrane" keyword tagging, membrane-embedded classification, and requiring more than one documented structure—to generate a filtered protein dataset in TSV format. I then searched for corresponding AlphaFold 2 models, AlphaFold 3 models, and experimentally determined PDB structures for each protein in the filtered set, using a TM-align algorithm to align and select the highest-sequence-identity match when multiple candidate structures were available. This process produced a structured dataset of matched predicted-versus-experimental structure pairs that could be directly compared using quantitative structural metrics.',
+      process: 'Once the matched structural pairs were compiled into a CSV dataset, I ran a structural-comparison analysis computing RMSD, TM-score for both protein chains, sequence identity, and mean pLDDT confidence scores for every AlphaFold 2 and AlphaFold 3 prediction. I performed statistical hypothesis testing, calculating 95% confidence intervals and p-values for the mean difference between AF2 and AF3 on each metric, and generated correlation heatmaps and frequency-distribution histograms to visualize how these metrics related to one another and how prediction quality was distributed across the dataset. This let me determine which structural differences between the two AlphaFold versions were statistically significant rather than due to random variation',
+      outcome: 'The analysis found that AlphaFold 3 showed no statistically significant improvement over AlphaFold 2 in core structural accuracy metrics, with RMSD (p=0.152) and both TM-scores (p=0.318 and p=0.784) showing no significant difference between versions. However, AlphaFold 2 significantly outperformed AlphaFold 3 on sequence identity (88.35% vs. 86.87%, p=0.017) and mean pLDDT confidence score (79.341 vs. 77.902, p<0.0001), indicating that for membrane proteins specifically, AlphaFold 3 did not deliver a meaningful upgrade and in some respects performed slightly worse than its predecessor .'
     },
     medbuddy: {
       title: 'MedBuddy',
@@ -507,15 +623,15 @@
       outcome: 'VEST attracted 34 Spring 2026 applicants, compared with 25 in Fall 2025—a 36% increase—and rose from last place to tied for third among projects in applicant demand. With an 17.65% acceptance rate, the project formed a selective 18-member team and produced a partially functional canine-vitals vest that transmitted data to a mobile app; future work will focus on securing funding, completing animal testing, validating sensor accuracy, and pursuing startup-incubator opportunities.'
     },
     'robotic-leg': {
-      title: 'Robotic Leg',
-      role: 'Mechatronics Team Member',
-      team: 'Robotics Development Team',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Contributed to a robotic leg prototype by connecting mechanical design, control considerations, and validation planning.',
-      problem: 'The team needed to deliver stable, repeatable motion while managing mechanical limits and implementation complexity.',
-      action: 'I supported mechanism development, helped align control priorities, and documented integration blockers early.',
-      process: 'I collaborated through iterative builds, tested behavior under representative conditions, and tracked adjustments with clear rationale.',
-      outcome: 'The team demonstrated a functional prototype with improved motion reliability and actionable next steps for optimization.'
+      title: '6 DOF Robotic Leg Prototype',
+      role: 'Mechanical Design Team Leader',
+      team: 'ANKL',
+      dates: 'Jan 2025 - Jan 2026',
+      summary: 'As the mechanical team leader for the ANKL project, I led the design and development of a prosthetic-leg system that applied robotics principles to a medical-device application. The project focused on creating a functional, mechanically reliable prosthetic-leg prototype that could support future advances in mobility, user comfort, and assistive technology.',
+      problem: 'Conventional prosthetic legs often provide limited ankle and foot motion, which can contribute to unnatural gait patterns, reduced mobility, fatigue, and increased strain on the user’s unaffected limb. The ANKL project addresses this limitation by developing a six-degree-of-freedom prosthetic ankle capable of reproducing a broader range of ankle motion while supporting a user body weight of more than 200 pounds.',
+      action: 'As mechanical team leader for the ANKL prosthetic-leg project, I proposed the initial design direction and helped translate user needs into engineering requirements for a six-degree-of-freedom, load-bearing prosthetic ankle. I researched patient constraints and found that the intended design should accommodate users over age 40 and support body weights above 200 pounds, then used these requirements to guide material selection, geometric design, and mechanical simulations. I also led teams ranging from 8 to 16 members and introduced a Git-based documentation system to track live documents, code revisions, and SolidWorks design changes across the project.',
+      process: 'To support the mechanical design, I studied modern robotics, motion biomechanics, EMG signals, gait analysis, IMU-based measurement, OpenSim, coordinate systems, absolute and relative velocity, 2R and 3R planar models, Denavit–Hartenberg parameters, and direct linear transformation coordinates. I applied this knowledge to understand and model human movement in three-dimensional space, evaluate prosthetic-leg motion requirements, and simulate mechanical geometry, loading, and potential failure points in SolidWorks. I also contributed to electrical prototyping by developing actuator test circuits, reviewing component datasheets, working with Raspberry Pi hardware, analog-to-digital converters, wiring, and power sources, and troubleshooting circuit issues to support actuator testing and system integration.',
+      outcome: 'The team developed a functioning Stewart-platform prototype capable of translating and rotating into multiple positions, demonstrating the feasibility of the prosthetic ankle’s multi-degree-of-freedom mechanical concept. Through leading an 8–16 member team and contributing to mechanical design, simulation, actuator testing, and documentation workflows, I built practical experience in prosthetic-device development, mechatronics integration, biomechanics, technical troubleshooting, and cross-functional engineering leadership.'
     }
   };
 

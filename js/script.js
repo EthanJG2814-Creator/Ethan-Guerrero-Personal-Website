@@ -321,6 +321,150 @@
   ];
 
   var projectGalleries = {
+    'hip-implant': [
+      {
+        src: './assets/hip_implant/image_1.png',
+        caption: 'Segmented femur geometry prepared from CT scan data',
+        altSuffix: 'segmented femur geometry from CT data',
+        fit: 'contain'
+      },
+      {
+        src: './assets/hip_implant/image_2.png',
+        caption: 'Hip implant alignment and cavity preparation within the femur model',
+        altSuffix: 'hip implant alignment within femur model',
+        fit: 'contain'
+      },
+      {
+        src: './assets/hip_implant/image_3.png',
+        caption: 'Finite element simulation view for implant and bone stress analysis',
+        altSuffix: 'finite element simulation stress analysis view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/hip_implant/image_4.png',
+        caption: 'Post-processed stress comparison across femur sections and implant cases',
+        altSuffix: 'stress comparison across femur sections',
+        fit: 'contain'
+      }
+    ],
+    'bone-modeling': [
+      {
+        src: './assets/bone/image_1.png',
+        caption: 'Bone-plate configurations prepared for theoretical and simulated comparison',
+        altSuffix: 'bone plate configuration comparison',
+        fit: 'contain'
+      },
+      {
+        src: './assets/bone/image_2.png',
+        caption: 'SolidWorks simulation setup for bending stress evaluation',
+        altSuffix: 'SolidWorks bending stress simulation setup',
+        fit: 'contain'
+      },
+      {
+        src: './assets/bone/image_3.png',
+        caption: 'Physical three-point bending test workflow and data collection setup',
+        altSuffix: 'three point bending test setup',
+        fit: 'contain'
+      },
+      {
+        src: './assets/bone/image_4.png',
+        caption: 'Final comparison of theoretical, simulated, and measured stress results',
+        altSuffix: 'final stress comparison results',
+        fit: 'contain'
+      }
+    ],
+    'bmen-207': [
+      {
+        src: './assets/solidworks/1020_carbon_steel_stress_without_mesh.png',
+        caption: 'SolidWorks Simulation stress study for a carbon steel part',
+        altSuffix: 'carbon steel stress simulation',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/1060_alloy_withoutmesh_screenshot.png',
+        caption: 'Simulation result used to compare stress behavior across material choices',
+        altSuffix: 'alloy stress simulation comparison',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/BMEN_207_CAD_EXam.png',
+        caption: 'Course CAD exam drawing demonstrating dimensioned design communication',
+        altSuffix: 'CAD exam engineering drawing',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/BMEN_207_CAD_EXam_parat_screenshot.png',
+        caption: 'Part model from the BMEN 207 CAD exam exercise',
+        altSuffix: 'CAD exam part model',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/Battery_box_for_circuit_screenshot.png',
+        caption: 'Battery enclosure model created for a circuit-board housing concept',
+        altSuffix: 'battery enclosure model for circuit board',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/Battery_box_part_screenshot.png',
+        caption: 'Parametric battery box part with functional clearances and lid geometry',
+        altSuffix: 'parametric battery box part model',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/Screenshot_full_camera.png',
+        caption: 'Full camera assembly showing how multiple CAD parts integrate together',
+        altSuffix: 'full camera assembly view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/Screensot_of_front_camera_part.png',
+        caption: 'Front camera component model developed as part of a multi-part assembly',
+        altSuffix: 'front camera part model',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/battery_box_assembled_circuit_board_screenshot.png',
+        caption: 'Battery box assembly with internal circuit-board fit and fastening features',
+        altSuffix: 'battery box assembly with circuit board',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/exploded_viewof_assembley_batter_box_circuit_board_screenshot.png',
+        caption: 'Exploded view showing assembly structure and part relationships',
+        altSuffix: 'exploded assembly view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/pressure_plate_screenshot.png',
+        caption: 'Pressure plate model demonstrating manufacturing-ready feature design',
+        altSuffix: 'pressure plate CAD model',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/screenshot_back_camera_part_CAD.png',
+        caption: 'Back camera component modeled with dimensioned mechanical features',
+        altSuffix: 'back camera part CAD model',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/screenshot_circuit_board_drawing.png',
+        caption: 'Engineering drawing used to communicate board dimensions and tolerances',
+        altSuffix: 'circuit board engineering drawing',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/screenshot_font_camera_part_CAD.png',
+        caption: 'Detailed CAD view for the front camera component geometry',
+        altSuffix: 'front camera component geometry view',
+        fit: 'contain'
+      },
+      {
+        src: './assets/solidworks/screenshot_full_camera_part_CAD.png',
+        caption: 'Integrated camera part composition used to practice assembly design',
+        altSuffix: 'integrated camera part composition',
+        fit: 'contain'
+      }
+    ],
     scraper: [
       {
         src: './assets/scraper/image_1.png',
@@ -536,36 +680,37 @@
   var projectContent = {
     'hip-implant': {
       title: 'Hip Implant Project',
-      role: 'Design and Analysis Contributor',
-      team: 'Biomechanics Design Team',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Designed and evaluated a concept hip implant to improve load transfer and manufacturing readiness.',
-      problem: 'The team needed an implant concept that balanced biomechanical stability with manufacturable geometry while addressing stress concentration in high-load regions.',
-      action: 'I owned CAD refinement, translated requirements into measurable criteria, and supported reviews with concise design tradeoff documentation.',
-      process: 'I iterated geometry, compared design options against constraints, and aligned structural assumptions with team testing plans to reduce downstream rework.',
-      outcome: 'We delivered a final design package and rationale that improved design clarity for stakeholders and strengthened confidence in the chosen direction.'
+      role: 'Student',
+      team: 'Biomechanics Design',
+      dates: 'Nov 2025',
+      summary: 'This BMEN 457 project used CT scan data to build a finite element model of a femur, comparing stress distribution with and without a hip implant across two different implant stiffnesses (80 GPa and 25 GPa). The workflow spanned segmentation in 3D Slicer, mesh generation and simulation in FEBio Studio, and a custom Python post-processing algorithm that mapped stress data to 20 height-based sections of the bone to compare tensile and compressive stress behavior between the intact femur and implant scenarios.',
+      problem: 'Predicting how a hip implant redistributes mechanical stress within a femur requires accurately reconstructing patient-specific bone geometry from CT scans and correctly modeling the bone-implant interaction across different implant stiffnesses. This project addressed that need by segmenting a femur from CT DICOM data, hollowing it to fit a hip implant, and running finite element simulations comparing stress distribution in the intact femur versus femurs fitted with two implants of differing Youngs moduli (80 GPa and 25 GPa) against a bone modulus of 20 GPa.',
+      action: 'I processed CT DICOM images in 3D Slicer using a gradient anisotropic diffusion filter, threshold-based segmentation, and smoothing operations to isolate the femur, then subtracted the implant geometry to create an internal cavity for hip-implant placement. After the implant snapped to an incorrect orientation when merged into the femurs transform hierarchy, I created a separate transform node and manually adjusted rotation and translation values until the implant properly mated with the bone cavity.',
+      process: 'In FEBio Studio, I generated tetrahedral meshes for the femur and implant using TetGen, refined them with MMG Remesh, and partitioned key surfaces to apply isotropic elastic material properties (bone: 20 GPa; implants: 80 GPa and 25 GPa, 0.3 Poissons ratio each) before running simulations with a z-direction nodal load and tied elastic contact. I then wrote a Python algorithm to parse the .feb node data, divide the femur into 20 height-based sections, and calculate peak and average tensile/compressive stress per section from the exported CSV stress data.',
+      outcome: 'The stiffer 80 GPa implant reduced peak compressive stress in the surrounding bone to roughly -150 to -300 MPa across the 20 sections, compared with approximately -400 to -580 MPa in the implant-free femur, indicating substantial load-sharing by the harder implant. The softer 25 GPa implant instead produced more stress spikes and less consistent load transfer, with results across all three cases showing added noise due to the lack of an automated implant-alignment tool in the FEA software.'
     },
     'bone-modeling': {
       title: 'Bone Modeling Lab',
       role: 'Computational Modeling Team Member',
       team: 'Biomedical Simulation Lab',
       dates: 'Jan 2024 - May 2024',
-      summary: 'Built and validated a bone model workflow to support data-informed biomechanical analysis.',
-      problem: 'The lab needed a repeatable way to model bone behavior from experimental context without losing traceability between assumptions and outputs.',
-      action: 'I structured the model pipeline, documented key assumptions, and prepared interpretable outputs for technical discussion.',
-      process: 'I cleaned inputs, validated parameter choices, and compared intermediate outputs to expected trends before final interpretation.',
-      outcome: 'The final workflow improved reproducibility and gave the team a stronger foundation for follow-on experiments and model updates.'
+      summary: 'This BMEN 361 lab investigated which bone-plate configuration—Bone Only, Single Plate, or Double Plate—most effectively minimizes bending stress in a fractured bone construct, using theoretical calculations, SolidWorks simulations, and physical three-point bending tests. The Double Plate configuration proved most effective, showing the lowest maximum normal stress (2.120–2.470 MPa) and the smallest percent errors (1.79%–14.41%) across all three evaluation methods',
+      problem: 'Selecting the optimal bone-plate configuration is critical for stabilizing fractured bones, since excess bending stress at the fracture site can impair proper healing, yet it was unclear whether a single-plate or double-plate configuration would better minimize that stress. This study addressed that gap by testing three 3D-printed PLA bone constructs—Bone Only, Single Plate, and Double Plate—under a three-point bending test with forces applied up to 1000 N at a rate of 20 mm/min, then comparing the results against theoretical and SolidWorks-simulated bending stress values.',
+      action: 'I helped fabricate three 3D-printed PLA bone constructs to the same target dimensions (100 mm bone length, 25 mm outer diameter, 13 mm inner diameter, with 16 mm-wide by 5 mm-tall plates), then measured each construct against these ideal values to verify print accuracy before testing. Using a Labthink Mechanical Auto Tensile Tester, I ran three-point bending tests on all three configurations, applying force at a 20 mm/min test speed until each construct fractured or reached the 1000 N load limit, and recorded force-versus-displacement data to calculate real-world bending stress for each case. I also built a SolidWorks simulation for each configuration, applying a 7.5 Nm internal torque with roller-and-hinge boundary conditions, and performed the theoretical bending-stress calculations using the flexure formula, moment of inertia, and neutral-axis equations to establish an analytical baseline for comparison.',
+      process: 'To validate the experimental and simulated results, I calculated the maximum bending stress for each construct using the flexure formula, which required first computing the sections moment of inertia and neutral-axis location from segment areas and centroid distances. I then compared these theoretical stresses against the SolidWorks simulation outputs and the experimentally measured stresses across all three configurations: Bone Only (5.275 MPa theoretical vs. 4.561 MPa simulated vs. 3.971 MPa physical), Single Plate (3.390 vs. 2.052 vs. 2.895 MPa), and Double Plate (2.426 vs. 2.470 vs. 2.120 MPa). This three-way comparison allowed the team to calculate percent error between methods for each configuration and identify which plate design most consistently reduced bending stress across theoretical, simulated, and physical evaluation approaches.',
+      outcome: 'Across all three evaluation methods, the Double Plate configuration consistently produced the lowest maximum normal stress values (2.120–2.470 MPa) and the smallest percent errors (1.790%–14.412%), confirming that a double-plate design provides superior load distribution and mechanical stability for fractured bone stabilization. By contrast, the Single Plate and Bone Only configurations showed notably higher stresses (2.052–5.275 MPa) and greater inconsistency between methods, with percent errors reaching as high as 65.228%, largely due to the plates being glued rather than bolted to the constructs. The convergence of theoretical, simulated, and physical results around the Double Plate configuration provided strong, multi-method evidence supporting its use as the more effective bone-plate design, with future work aimed at bolting the plates and standardizing PLA fill density to reduce testing variability.'
     },
     'bmen-207': {
-      title: 'BMEN 207 Project',
-      role: 'Project Engineer',
-      team: 'Course Design Team',
-      dates: 'Jan 2024 - May 2024',
-      summary: 'Delivered a semester-long biomedical engineering project with clear milestones and documented technical decisions.',
-      problem: 'The project required integrating course concepts into a practical solution under strict time, scope, and communication constraints.',
-      action: 'I coordinated implementation priorities, maintained technical documentation, and communicated risks during checkpoint reviews.',
-      process: 'I broke the project into milestones, validated each stage against requirements, and adjusted task ownership to keep delivery on schedule.',
-      outcome: 'The team delivered a complete final submission with measurable progress evidence and a strong narrative of engineering decision-making.'
+      title: 'Solidworks Project',
+      role: 'Stuedent',
+      team: 'BMEN 207: Computer-Aided Design',
+      dates: 'Aug 2023 - October 2023',
+      sections: [
+        {
+          title: 'What I Learned',
+          body: 'Through BMEN 207, I developed SolidWorks skills in creating parametric 3D parts, multi-part assemblies, exploded views, and manufacturing-ready engineering drawings for biomedical and electromechanical applications. I modeled functional components such as a battery enclosure with a removable lid, internal battery and circuit-board clearances, corner fasteners, and dimensioned tolerances. I also used SolidWorks Simulation to apply forces and fixed constraints to CAD models, evaluate von Mises stress and part deflection, identify high-stress regions, and compare simulated stress results with a material\'s yield strength to assess whether a design could withstand an applied load.'
+        }
+      ]
     },
     'hospital-prediction': {
       title: 'Hospital Prediction',
@@ -655,6 +800,12 @@
     var prevLabel = prevKey ? 'Previous Project: ' + projectContent[prevKey].title : 'Previous Project';
     var nextLabel = nextKey ? 'Next Project: ' + projectContent[nextKey].title : 'Next Project';
     var gallery = projectGalleries[projectKey] || sharedGallery;
+    var contentSections = data.sections || [
+      { title: 'Problem', body: data.problem },
+      { title: 'My Action', body: data.action },
+      { title: 'Process', body: data.process },
+      { title: 'Outcome', body: data.outcome }
+    ];
 
     var slidesHtml = gallery
       .map(function (image, idx) {
@@ -674,11 +825,22 @@
       })
       .join('');
 
+    var sectionsHtml = contentSections
+      .map(function (section) {
+        return (
+          '<section class="project-page-section">' +
+            '<h2>' + section.title + '</h2>' +
+            '<p>' + section.body + '</p>' +
+          '</section>'
+        );
+      })
+      .join('');
+
     container.innerHTML =
       '<header class="project-page-intro">' +
         '<h1 class="project-page-title">' + data.title + '</h1>' +
         '<p class="project-page-meta">Role: ' + data.role + ' | Team: ' + data.team + ' | Dates: ' + data.dates + '</p>' +
-        '<p class="project-page-summary">' + data.summary + '</p>' +
+        (data.summary ? '<p class="project-page-summary">' + data.summary + '</p>' : '') +
       '</header>' +
       '<section class="project-carousel" aria-label="Project gallery for ' + data.title + '" tabindex="0">' +
         '<div class="project-carousel-viewport">' +
@@ -693,26 +855,11 @@
           '</div>' +
         '</div>' +
       '</section>' +
-      '<section class="project-page-section">' +
-        '<h2>Problem</h2>' +
-        '<p>' + data.problem + '</p>' +
-      '</section>' +
-      '<section class="project-page-section">' +
-        '<h2>My Action</h2>' +
-        '<p>' + data.action + '</p>' +
-      '</section>' +
-      '<section class="project-page-section">' +
-        '<h2>Process</h2>' +
-        '<p>' + data.process + '</p>' +
-      '</section>' +
-      '<section class="project-page-section">' +
-        '<h2>Outcome</h2>' +
-        '<p>' + data.outcome + '</p>' +
-      '</section>' +
+      sectionsHtml +
       '<nav class="project-page-footer-nav" aria-label="Project page navigation">' +
         '<button type="button" class="project-page-nav-btn" data-project-nav="prev"' + (prevKey ? '' : ' disabled') + '>' + prevLabel + '</button>' +
         '<button type="button" class="project-page-nav-btn" data-project-nav="next"' + (nextKey ? '' : ' disabled') + '>' + nextLabel + '</button>' +
-      '</section>';
+      '</nav>';
   }
 
   function navigateProjectFromKey(currentKey, direction) {

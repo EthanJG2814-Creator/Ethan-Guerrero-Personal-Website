@@ -1,5 +1,4 @@
-# Link to the website
-https://ethanjg2814-creator.github.io/Ethan-Guerrero-Personal-Website/
+
 
 # Personal Portfolio / Business Card
 

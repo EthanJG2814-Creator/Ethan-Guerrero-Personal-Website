@@ -1048,7 +1048,9 @@
 })();
 
 /**
- * Portfolio PDF export: layout matches project pages (html2pdf + clone). Order: Bio, then project categories.
+ * Portfolio PDF export: each project (and the Bio) is rendered as its own canvas and placed on
+ * its own PDF page directly via jsPDF, so page breaks are exact instead of relying on html2pdf's
+ * heuristic slicing (which produced blank pages and cut-off titles).
  */
 (function () {
   'use strict';
@@ -1087,8 +1089,9 @@
   }
 
   function exportPortfolioPdf() {
-    var html2pdfFn = typeof window.html2pdf === 'function' ? window.html2pdf : null;
-    if (!html2pdfFn) {
+    var html2canvasFn = typeof window.html2canvas === 'function' ? window.html2canvas : null;
+    var JsPdfCtor = window.jspdf && window.jspdf.jsPDF ? window.jspdf.jsPDF : (typeof window.jsPDF === 'function' ? window.jsPDF : null);
+    if (!html2canvasFn || !JsPdfCtor) {
       window.alert('PDF export could not load. Please refresh and try again.');
       return;
     }
@@ -1097,29 +1100,135 @@
     var projectCategories = [
       {
         heading: 'CAD & Mechanical Design',
-        selectors: [
-          '#about-panel-hip-implant .card-section-content',
-          '#about-panel-bone-modeling .card-section-content',
-          '#about-panel-bmen-207 .card-section-content'
-        ]
+        keys: ['hip-implant', 'bone-modeling', 'bmen-207']
       },
       {
         heading: 'Software, Data & ML',
-        selectors: [
-          '#about-panel-hospital-prediction .card-section-content',
-          '#about-panel-scraper .card-section-content',
-          '#about-panel-ai-protein .card-section-content'
-        ]
+        keys: ['hospital-prediction', 'scraper', 'ai-protein']
       },
       {
         heading: 'Prototypes',
-        selectors: [
-          '#about-panel-medbuddy .card-section-content',
-          '#about-panel-canine-wearable .card-section-content',
-          '#about-panel-robotic-leg .card-section-content'
-        ]
+        keys: ['medbuddy', 'canine-wearable', 'robotic-leg']
       }
     ];
+
+    // picks up to `count` distinct images at random (no repeats) from a project's carousel
+    function pickRandomImages(imgList, count) {
+      var pool = Array.prototype.slice.call(imgList);
+      var picked = [];
+      while (pool.length && picked.length < count) {
+        var idx = Math.floor(Math.random() * pool.length);
+        picked.push(pool.splice(idx, 1)[0]);
+      }
+      return picked;
+    }
+
+    // builds a compact, print-friendly block: title, meta, summary, and four random gallery images (no carousel, no full P/A/P/O)
+    function buildProjectPdfBlock(key) {
+      var panel = document.getElementById('about-panel-' + key);
+      if (!panel) return null;
+      var titleEl = panel.querySelector('.project-page-title');
+      if (!titleEl) return null;
+      var metaEl = panel.querySelector('.project-page-meta');
+      var summaryEl = panel.querySelector('.project-page-summary');
+      var slideFigures = panel.querySelectorAll('.project-slide');
+
+      var block = document.createElement('div');
+      block.className = 'portfolio-pdf-project-block';
+
+      var h3 = document.createElement('h3');
+      h3.className = 'portfolio-pdf-project-title';
+      h3.textContent = titleEl.textContent;
+      block.appendChild(h3);
+
+      if (metaEl) {
+        var meta = document.createElement('p');
+        meta.className = 'portfolio-pdf-project-meta';
+        meta.textContent = metaEl.textContent;
+        block.appendChild(meta);
+      }
+
+      if (summaryEl) {
+        var summary = document.createElement('p');
+        summary.className = 'portfolio-pdf-project-summary';
+        summary.textContent = summaryEl.textContent;
+        block.appendChild(summary);
+      }
+
+      var chosenFigures = pickRandomImages(slideFigures, 4);
+      if (chosenFigures.length) {
+        var imagesRow = document.createElement('div');
+        imagesRow.className = 'portfolio-pdf-project-images';
+        chosenFigures.forEach(function (figure) {
+          var img = figure.querySelector('img');
+          if (!img) return;
+          var figureClone = document.createElement('figure');
+          figureClone.className = 'portfolio-pdf-project-figure';
+          var imgClone = document.createElement('img');
+          imgClone.src = img.src;
+          imgClone.alt = img.alt;
+          figureClone.appendChild(imgClone);
+          var caption = figure.querySelector('figcaption');
+          if (caption) {
+            var captionClone = document.createElement('figcaption');
+            captionClone.textContent = caption.textContent;
+            figureClone.appendChild(captionClone);
+          }
+          imagesRow.appendChild(figureClone);
+        });
+        block.appendChild(imagesRow);
+      }
+
+      return block;
+    }
+
+    function createPage() {
+      var page = document.createElement('div');
+      page.className = 'portfolio-pdf-page';
+      return page;
+    }
+
+    var pages = [];
+
+    var bioPage = createPage();
+    var mainTitle = document.createElement('h1');
+    mainTitle.className = 'portfolio-pdf-main-title';
+    mainTitle.textContent = 'Portfolio';
+    bioPage.appendChild(mainTitle);
+    var bioSection = document.createElement('section');
+    bioSection.className = 'portfolio-pdf-section';
+    var bioHeading = document.createElement('h2');
+    bioHeading.className = 'portfolio-pdf-section-title';
+    bioHeading.textContent = 'Bio';
+    bioSection.appendChild(bioHeading);
+    var clonedBio = cloneForPdf(aboutContent);
+    if (clonedBio) {
+      clonedBio.classList.remove('card-section-content--scroll');
+      bioSection.appendChild(clonedBio);
+    }
+    bioPage.appendChild(bioSection);
+    pages.push(bioPage);
+
+    projectCategories.forEach(function (category) {
+      category.keys.forEach(function (key, idx) {
+        var page = createPage();
+        if (idx === 0) {
+          var section = document.createElement('section');
+          section.className = 'portfolio-pdf-section';
+          var h2 = document.createElement('h2');
+          h2.className = 'portfolio-pdf-section-title';
+          h2.textContent = category.heading;
+          section.appendChild(h2);
+          var firstBlock = buildProjectPdfBlock(key);
+          if (firstBlock) section.appendChild(firstBlock);
+          page.appendChild(section);
+        } else {
+          var block = buildProjectPdfBlock(key);
+          if (block) page.appendChild(block);
+        }
+        pages.push(page);
+      });
+    });
 
     var shell = document.createElement('div');
     shell.className = 'portfolio-pdf-export-shell';
@@ -1127,35 +1236,8 @@
 
     var root = document.createElement('div');
     root.className = 'portfolio-pdf-export-root';
-
-    var title = document.createElement('h1');
-    title.className = 'portfolio-pdf-main-title';
-    title.textContent = 'Portfolio';
-    root.appendChild(title);
-
-    function addSection(heading, contentNodes) {
-      var section = document.createElement('section');
-      section.className = 'portfolio-pdf-section';
-      var h2 = document.createElement('h2');
-      h2.className = 'portfolio-pdf-section-title';
-      h2.textContent = heading;
-      section.appendChild(h2);
-      (Array.isArray(contentNodes) ? contentNodes : [contentNodes]).forEach(function (contentNode) {
-        var cloned = cloneForPdf(contentNode);
-        if (cloned) {
-          cloned.classList.remove('card-section-content--scroll');
-          section.appendChild(cloned);
-        }
-      });
-      root.appendChild(section);
-    }
-
-    addSection('Bio', aboutContent);
-    projectCategories.forEach(function (category) {
-      var nodes = category.selectors.map(function (sel) {
-        return document.querySelector(sel);
-      });
-      addSection(category.heading, nodes);
+    pages.forEach(function (page) {
+      root.appendChild(page);
     });
 
     shell.appendChild(root);
@@ -1167,49 +1249,44 @@
       btn.setAttribute('aria-busy', 'true');
     }
 
-    function runPdf() {
-      var opt = {
-        margin: [10, 10, 10, 10],
-        filename: 'portfolio.pdf',
-        image: { type: 'jpeg', quality: 0.92 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          allowTaint: false,
-          logging: false,
-          letterRendering: true,
-          scrollX: 0,
-          scrollY: 0
-        },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ['css', 'legacy'], avoid: ['.project-block', 'figure', 'img'] }
-      };
+    function renderPages() {
+      var PAGE_WIDTH_MM = 210;
+      var PAGE_HEIGHT_MM = 297;
+      var MARGIN_MM = 10;
+      var contentWidthMM = PAGE_WIDTH_MM - MARGIN_MM * 2;
+      var contentHeightMM = PAGE_HEIGHT_MM - MARGIN_MM * 2;
+      var doc = new JsPdfCtor({ unit: 'mm', format: 'a4', orientation: 'portrait' });
 
-      var worker = html2pdfFn().set(opt).from(root);
-      var savePromise = worker.save();
-      if (!savePromise || typeof savePromise.then !== 'function') {
-        removeExportShell(shell);
-        if (btn) {
-          btn.disabled = false;
-          btn.removeAttribute('aria-busy');
-        }
-        window.alert('PDF export failed to start. Please refresh and try again.');
-        return;
-      }
-      savePromise
-        .then(function () {
-          removeExportShell(shell);
-        })
-        .catch(function () {
-          removeExportShell(shell);
-          window.alert('Could not create the PDF. Try again or check your network connection.');
-        })
-        .then(function () {
-          if (btn) {
-            btn.disabled = false;
-            btn.removeAttribute('aria-busy');
-          }
+      var chain = Promise.resolve();
+      pages.forEach(function (page, idx) {
+        chain = chain.then(function () {
+          return html2canvasFn(page, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: false,
+            logging: false,
+            letterRendering: true,
+            scrollX: 0,
+            scrollY: 0
+          }).then(function (canvas) {
+            var imgWidthMM = contentWidthMM;
+            var imgHeightMM = (canvas.height / canvas.width) * imgWidthMM;
+            var offsetXMM = MARGIN_MM;
+            if (imgHeightMM > contentHeightMM) {
+              var scaleFactor = contentHeightMM / imgHeightMM;
+              imgHeightMM = contentHeightMM;
+              imgWidthMM = imgWidthMM * scaleFactor;
+              offsetXMM = MARGIN_MM + (contentWidthMM - imgWidthMM) / 2;
+            }
+            if (idx > 0) doc.addPage();
+            var imgData = canvas.toDataURL('image/jpeg', 0.92);
+            doc.addImage(imgData, 'JPEG', offsetXMM, MARGIN_MM, imgWidthMM, imgHeightMM);
+          });
         });
+      });
+      return chain.then(function () {
+        doc.save('portfolio.pdf');
+      });
     }
 
     waitForImages(root)
@@ -1223,7 +1300,14 @@
         });
       })
       .then(function () {
-        runPdf();
+        return renderPages();
+      })
+      .then(function () {
+        removeExportShell(shell);
+        if (btn) {
+          btn.disabled = false;
+          btn.removeAttribute('aria-busy');
+        }
       })
       .catch(function () {
         removeExportShell(shell);
@@ -1231,6 +1315,7 @@
           btn.disabled = false;
           btn.removeAttribute('aria-busy');
         }
+        window.alert('Could not create the PDF. Try again or check your network connection.');
       });
   }
 

@@ -616,7 +616,10 @@ body.stars-visible .moon {
 
 .portfolio-pdf-export-root {
   position: relative;
-  width: 794px;
+}
+
+.portfolio-pdf-page {
+  width: 960px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 28px 36px 40px;
@@ -624,6 +627,7 @@ body.stars-visible .moon {
   color: var(--color-text);
   font-family: 'DM Sans', system-ui, sans-serif;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
 }
 
 .portfolio-pdf-export-root .card-section-content--scroll {
@@ -638,20 +642,84 @@ body.stars-visible .moon {
   align-items: flex-start !important;
 }
 
+.portfolio-pdf-export-root .card-subheading {
+  font-size: 1.4375rem;
+}
+
+.portfolio-pdf-export-root .card-section-text {
+  font-size: 1.4375rem;
+}
+
+.portfolio-pdf-export-root .about-credential-title {
+  font-size: 1.45rem;
+}
+
+.portfolio-pdf-export-root .about-list li {
+  font-size: 1.4375rem;
+}
+
 .portfolio-pdf-export-root .project-figures {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 0.75rem;
 }
 
-.portfolio-pdf-export-root .project-block {
-  page-break-inside: avoid;
-  break-inside: avoid;
+.portfolio-pdf-project-block {
+  margin: 0 0 1.5rem;
+}
+
+.portfolio-pdf-project-block:last-child {
+  margin-bottom: 0;
+}
+
+.portfolio-pdf-project-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.portfolio-pdf-project-meta {
+  margin: 0 0 0.5rem;
+  font-size: 1.3125rem;
+  color: var(--color-text-muted);
+}
+
+.portfolio-pdf-project-summary {
+  margin: 0 0 0.75rem;
+  font-size: 1.4375rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.portfolio-pdf-project-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.portfolio-pdf-project-figure {
+  margin: 0;
+}
+
+.portfolio-pdf-project-figure img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+.portfolio-pdf-project-figure figcaption {
+  margin-top: 0.35rem;
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
 }
 
 .portfolio-pdf-main-title {
   margin: 0 0 1.25rem;
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: var(--color-text);
   border-bottom: 2px solid var(--color-border);
@@ -668,7 +736,7 @@ body.stars-visible .moon {
 
 .portfolio-pdf-section-title {
   margin: 1.5rem 0 1rem;
-  font-size: 1.125rem;
+  font-size: 1.625rem;
   font-weight: 600;
   color: var(--color-link);
   padding-bottom: 0.35rem;

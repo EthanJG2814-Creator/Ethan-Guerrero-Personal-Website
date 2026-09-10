@@ -187,15 +187,16 @@
   }
 
   function setAboutTab(tab) {
-    var aboutBtn = document.querySelector('.about-tab-btn[data-about-tab="about"]');
+    var topTabBtns = document.querySelectorAll('.about-tab-btn[data-about-tab]');
     var panels = document.querySelectorAll('.about-tab-panel');
     var menuItems = document.querySelectorAll('.about-projects-subitem');
     var isProject = PROJECT_TABS.indexOf(tab) !== -1;
 
-    if (aboutBtn) {
-      aboutBtn.classList.toggle('about-tab-active', tab === 'about');
-      aboutBtn.setAttribute('aria-selected', tab === 'about' ? 'true' : 'false');
-    }
+    topTabBtns.forEach(function (btn) {
+      var isActive = btn.getAttribute('data-about-tab') === tab;
+      btn.classList.toggle('about-tab-active', isActive);
+      btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
     if (projectsToggle) {
       projectsToggle.classList.toggle('about-tab-active', isProject);
     }

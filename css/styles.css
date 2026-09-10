@@ -1342,6 +1342,86 @@ body.stars-visible .moon {
   margin-bottom: 0;
 }
 
+/* Work experience timeline: newest at top, oldest at bottom */
+.work-timeline {
+  position: relative;
+  display: grid;
+  gap: 1.1rem;
+  padding: 0.4rem 0 0.25rem;
+}
+
+.work-timeline::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 0.65rem;
+  bottom: 0.75rem;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.72), rgba(13, 115, 119, 0.35));
+}
+
+.work-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.work-timeline-marker {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid var(--color-active);
+  background: #ffffff;
+  margin-top: 0.12rem;
+  z-index: 1;
+}
+
+.work-timeline-item:nth-child(2n) .work-timeline-marker {
+  border-color: #0d7377;
+}
+
+.work-timeline-item:nth-child(3n) .work-timeline-marker {
+  border-color: #f59e0b;
+}
+
+.work-timeline-content {
+  padding: 0.15rem 0 0.05rem;
+}
+
+.work-timeline-dates {
+  margin: 0 0 0.12rem;
+  font-size: 0.79rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.work-timeline-title {
+  margin: 0 0 0.08rem;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+.work-timeline-meta {
+  margin: 0 0 0.3rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--color-link);
+  font-weight: 500;
+}
+
+.work-timeline-description {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--color-text);
+}
+
 /* Interest & Skills: bullet list with small icon-style bullets */
 .about-list {
   margin: 0 0 0.5rem;
@@ -1869,5 +1949,19 @@ body.stars-visible .shooting-stars {
   .about-two-column-listing {
     grid-template-columns: 1fr;
     gap: 0.75rem;
+  }
+
+  .work-timeline::before {
+    left: 11px;
+  }
+
+  .work-timeline-item {
+    grid-template-columns: 22px minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .work-timeline-marker {
+    width: 22px;
+    height: 22px;
   }
 }
